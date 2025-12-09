@@ -13,6 +13,9 @@ public class ArthurInk : MonoBehaviour
     public GameObject textPrefab;
     private bool canClickMouse = true;
     public GameObject[] bgs;
+    public AudioClip[] bgm;
+    public AudioSource source;
+    private AudioClip currentMusicClip; // Track the current music clip
 
 
 
@@ -54,6 +57,9 @@ public class ArthurInk : MonoBehaviour
 
         // Update background based on Ink variables
         UpdateBackground();
+
+        // Update music based on Ink variables
+        UpdateMusic();
 
         // Instantiate a new text display
         GameObject storyTextObj = Instantiate(textPrefab) as GameObject;
@@ -119,6 +125,57 @@ public class ArthurInk : MonoBehaviour
         return text;
     }
 
+    //Update Music based on Ink variables
+    void UpdateMusic() {
+
+        bool sword = (bool)story.variablesState["sword"];
+        bool tavern = (bool)story.variablesState["tavern"];
+        bool grounds = (bool)story.variablesState["grounds"];
+        bool road = (bool)story.variablesState["road"];
+        bool hearth = (bool)story.variablesState["hearth"];
+        bool field = (bool)story.variablesState["field"];
+
+        AudioClip newClip = null;
+        float newVolume = 1f;
+
+        if (sword) {
+            newClip = bgm[3];
+            newVolume = 1f;
+        }
+        else if (tavern) {
+            newClip = bgm[2];
+            newVolume = .25f;
+        }
+        else if (grounds) {
+            newClip = bgm[2];
+            newVolume = 1f;
+        }
+        else if (road) {
+            newClip = bgm[1];
+            newVolume = 1f;
+        }
+        else if (hearth) {
+            newClip = bgm[1];
+            newVolume = 1f;
+        }
+        else if (field) {
+            newClip = bgm[0];
+            newVolume = 1f;
+        }
+
+        // Only change the clip if it's different from the current one
+        if (newClip != null && newClip != currentMusicClip) {
+            currentMusicClip = newClip;
+            source.clip = newClip;
+            source.volume = newVolume;
+            source.Play();
+        }
+        else if (newClip != null && source.volume != newVolume) {
+            // Update volume if clip is same but volume changed
+            source.volume = newVolume;
+        }
+    }
+
     // Update background based on Ink variables
     void UpdateBackground()
     {
@@ -145,6 +202,8 @@ public class ArthurInk : MonoBehaviour
         hearthbg.SetActive(false);
         fieldbg.SetActive(false);
 
+        
+
         // Activate only the current background
         if (sword)
             swordbg.SetActive(true);
@@ -158,5 +217,6 @@ public class ArthurInk : MonoBehaviour
             hearthbg.SetActive(true);
         else if (field)
             fieldbg.SetActive(true);
+
     }
 }

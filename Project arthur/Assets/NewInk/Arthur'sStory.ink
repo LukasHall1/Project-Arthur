@@ -42,7 +42,7 @@ Sir Ector sits you down by the hearth.
 "Lords from across the realm will attend. A chance for Kay to earn his place as a knight."
 
 He looks at you thoughtfully.  
-"Arthur I want you to serve as Kay's squire."
+"Arthur, I want you to serve as Kay's squire."
 
 + "I would be honored." 
     ~ humility += 1
@@ -127,11 +127,11 @@ Trumpets blare as knights parade through the streets.
 Sir Ector turns to Kay. "Prepare yourself. The lists open soon."
 
 Kay pats his side, suddenly pale.  
-"Arthur! my sword. I left it at the inn!"
+"Arthur! My sword. I left it at the inn!"
 
 Sir Ector frowns. "Arthur, fetch it at once!"
 
-+ "I'll go get it!." 
++ "I'll go get it!" 
     ~ courage += 1
     -> find_sword
 + "I try to calm Kay first." 
@@ -150,10 +150,10 @@ Kay exhales. "You're a good brother."
 ~ grounds = false
 ~ tavern = true
 You sprint through the crowded streets back toward the inn.  
-Halfway there, you realize: everyone is at the tournament.
+Halfway there, you realize everyone is at the tournament.
 The inn is locked. The sword is inside.
 
-As this revelation washes over you dissapointment swells.
+As this revelation washes over you disappointment swells.
 How will Kay perform in the tournament without a sword?
 You plod your way back towards the tournament grounds, hesitant to break the news.
 As you walk through a church courtyard you spy something odd.
@@ -162,7 +162,7 @@ A sword stands embedded in a stone, sunlight shimmering on its hilt.
 
 A plaque reads: "Whosoever pulleth this sword from this stone is the rightful king of Briton."
 
-+ "I should look closer" 
++ "I should look closer." 
     -> examine_stone
 + "Ignore it. Kay needs his sword." 
     -> ignore_stone
@@ -211,10 +211,10 @@ The sword slides free as though it were placed there only moments before.
 
 You hold it in your hands.
 
-+ "Return to Kay posthaste"
++ "Return to Kay posthaste."
     ~ humility += 1
     ->return_to_Kay
-+ "Tell Sir Ector about the sword"
++ "Tell Sir Ector about the sword."
     ~ courage += 1
     ->tell_SirEctor
 
@@ -224,9 +224,9 @@ You hold it in your hands.
 You dash up to your brother in his tent and look to hand him the sword.
 "Where did you get this? This isn't my sword." Kay looks a little cross.
 
-"Well I found it" you say.
+"Well, I found it" you say.
 
-"This is far to fancy to just be something you found, did you steal it?"
+"This is far too fancy to just be something you found, did you steal it?"
 "No!" your face bunches into a frown. "It was in a stone and I pulled it out!"
 
 Sir Ector enters the tent in that moment and looks upon the sword, he gasps.
