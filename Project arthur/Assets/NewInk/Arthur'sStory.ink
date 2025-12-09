@@ -1,15 +1,24 @@
 VAR courage = 0
 VAR humility = 0
 
+VAR sword = false
+VAR tavern = false
+VAR grounds = false
+VAR road = false
+VAR hearth = false
+VAR field = false
+
 -> start
 === start ===
+~ field = true
 You are Arthur, a young farmhand on the outskirts of Sir Ector's holdings. 
 Dawn breaks over the rolling fields as you finish your morning chores.
 
 Your foster brother Kay calls from the stable. 
 "Arthur! Father wants you. Something about the tournament in London."
 
-+ "I hurry to Sir Ector." -> meet_ector
++ "I hurry to Sir Ector." 
+    -> meet_ector
 + "Kay can wait. I finish my chores first." 
     ~ humility += 1
     -> finish_chores
@@ -24,6 +33,9 @@ Sir Ector eventually appears behind you, arms folded.
 -> meet_ector
 
 === meet_ector ===
+~ field = false
+~ hearth = true
+
 Sir Ector sits you down by the hearth.
 
 "There is to be a great tournament in London," he explains. 
@@ -52,14 +64,17 @@ Sir Ector places a firm hand on your shoulder.
 === accept_squire ===
 Kay claps you on the back. "You'll carry my gear, polish my sword, prepare my horse, simple enough."
 
-Sir Ector: "We leave at first light. Rest now, Arthur. Tomorrow your life begins anew."
+Sir Ector smiles "We leave at first light. Rest now, Arthur. Tomorrow your life begins anew."
 
 -> journey_to_london
 
 === journey_to_london ===
+~ hearth = false
+~ road = true
+
 The road to London winds through forests and villages. 
 Merchants chatter about the tournament. Rumors swirl:  
-"Whoever draws the sword from the stone shall be king of Britain."
+"Whoever draws the sword from the stone shall be king of Briton."
 
 Kay scoffs. "Fairy tales."
 
@@ -88,7 +103,7 @@ Kay stares. "Do I know you?"
 
 He vanishes in a small swirl of smoke.
 
-Kay: "What in the blazes!"
+Kay exclaims "What in the blazes!"
 
 -> arrival_london
 
@@ -99,11 +114,13 @@ The stranger smiles softly.
 
 When you glance up again, he is gone.
 
-Kay: "Strange folk on the roads these days."
+Kay remarks "Strange folk on the roads these days."
 
 -> arrival_london
 
 === arrival_london ===
+~ road = false
+~ grounds = true
 London is alive with banners and crowds.  
 Trumpets blare as knights parade through the streets.
 
@@ -130,9 +147,11 @@ Kay exhales. "You're a good brother."
 -> find_sword
 
 === find_sword ===
+~ grounds = false
+~ tavern = true
 You sprint through the crowded streets back toward the inn.  
 Halfway there, you realize: everyone is at the tournament.
-the inn is locked. The sword is inside.
+The inn is locked. The sword is inside.
 
 As this revelation washes over you dissapointment swells.
 How will Kay perform in the tournament without a sword?
@@ -143,8 +162,10 @@ A sword stands embedded in a stone, sunlight shimmering on its hilt.
 
 A plaque reads: "Whosoever pulleth this sword from this stone is the rightful king of Briton."
 
-+ "I should look closer" -> examine_stone
-+ "Ignore it. Kay needs his sword." -> ignore_stone
++ "I should look closer" 
+    -> examine_stone
++ "Ignore it. Kay needs his sword." 
+    -> ignore_stone
 
 === ignore_stone ===
 You turn away, determined to find a solution for this conundrum.  
@@ -158,6 +179,8 @@ You must look at that sword.
 -> examine_stone
 
 === examine_stone ===
+~ tavern = false
+~ sword = true
 You approach the sword. No guards. No crowd. The bustle of the tournament far away now.
 
 Your hand trembles as you reach for the hilt.
@@ -196,6 +219,8 @@ You hold it in your hands.
     ->tell_SirEctor
 
 === return_to_Kay ===
+~ sword = false
+~ grounds = true
 You dash up to your brother in his tent and look to hand him the sword.
 "Where did you get this? This isn't my sword." Kay looks a little cross.
 
@@ -211,6 +236,8 @@ Sir Ector enters the tent in that moment and looks upon the sword, he gasps.
     ->the_Stone
     
 === tell_SirEctor ===
+~ sword = false
+~ grounds = true
 Before you give this sword to Kay you figure it's best to make sure it's a good one.
 Sir Ector knows his swords so you run to find him.
 
@@ -223,7 +250,8 @@ Once you found him you proffer the sword to Sir Ector.
     ->the_Stone
     
 === the_Stone ===
-
+~ sword = true
+~ grounds = false
 Bystanders heard your story and see the sword held.
 They follow you, by the time you reach the church courtyard a veritable crowd has drawn behind you, Kay, and Sir Ector; whispering to themselves. "He drew the sword, a boy? king of Briton? It's just an elaborate ploy"
 You reach the courtyard and find the stone empty.
@@ -243,5 +271,6 @@ The cloaked stranger appears behind the stone with a loud bang.
 === Ending ===
 {courage > humility: You raise the sword high, unafraid of this sudden change. Ready to brazenly accept your destiny as King of Briton. }
 {humility > courage: Merlin raises your sword high. You look around at the crowd, your father and brother, and think; How can you best serve the people of Briton?}
+The End
 
 -> DONE
