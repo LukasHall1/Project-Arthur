@@ -11,6 +11,7 @@ public class ArthurInk : MonoBehaviour
     private Story story;
     public Button buttonPrefab;
     public GameObject textPrefab;
+    public GameObject buttonParentPrefab;
     private bool canClickMouse = true;
     public GameObject[] bgs;
     public AudioClip[] bgm;
@@ -62,8 +63,9 @@ public class ArthurInk : MonoBehaviour
         UpdateMusic();
 
         // Instantiate a new text display
+        GameObject canvas = GameObject.Find("Canvas");
         GameObject storyTextObj = Instantiate(textPrefab) as GameObject;
-        storyTextObj.transform.SetParent(this.transform, false);
+        storyTextObj.transform.SetParent(canvas.transform, false);
         
         // Get the TextMeshProUGUI component (check children if not directly on this GameObject)
         TextMeshProUGUI textComponent = storyTextObj.GetComponent<TextMeshProUGUI>();
@@ -72,11 +74,15 @@ public class ArthurInk : MonoBehaviour
         // Only show buttons if there are choices available
         if (story.currentChoices.Count > 0)
         {
+            GameObject parent = Instantiate(buttonParentPrefab) as GameObject;
+            parent.transform.SetParent(canvas.transform, false);
+
             canClickMouse = false; // Disable mouse clicks when choices are available
             foreach (Choice choice in story.currentChoices)
             {
+                
                 Button choiceButton = Instantiate(buttonPrefab) as Button;
-                choiceButton.transform.SetParent(this.transform, false);
+                choiceButton.transform.SetParent(parent.transform, false);
 
                 // Gets the text from the button prefab
                 TextMeshProUGUI choiceText = choiceButton.GetComponentInChildren<TextMeshProUGUI>();
@@ -101,13 +107,17 @@ public class ArthurInk : MonoBehaviour
         refresh();
     }
 
-    // Clear out all of the UI, calling Destory() in reverse
+    // Clear out the story text only, not the ButtonParent
     void clearUI()
     {
-        int childCount = this.transform.childCount;
-        for (int i = childCount - 1; i >= 0; -- i)
+        GameObject canvas = GameObject.Find("Canvas");
+        // Find and destroy only the text display objects, not ButtonParent
+        foreach (Transform child in canvas.transform)
         {
-            GameObject.Destroy(this.transform.GetChild(i).gameObject);
+            if (child.name != "ButtonParent")
+            {
+                GameObject.Destroy(child.gameObject);
+            }
         }
     }
 
@@ -140,15 +150,15 @@ public class ArthurInk : MonoBehaviour
 
         if (sword) {
             newClip = bgm[3];
-            newVolume = 1f;
+            newVolume = .5f;
         }
         else if (tavern) {
             newClip = bgm[2];
-            newVolume = .25f;
+            newVolume = .1f;
         }
         else if (grounds) {
             newClip = bgm[2];
-            newVolume = 1f;
+            newVolume = .15f;
         }
         else if (road) {
             newClip = bgm[1];
@@ -160,7 +170,7 @@ public class ArthurInk : MonoBehaviour
         }
         else if (field) {
             newClip = bgm[0];
-            newVolume = 1f;
+            newVolume = .25f;
         }
 
         // Only change the clip if it's different from the current one

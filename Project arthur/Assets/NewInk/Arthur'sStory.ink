@@ -17,9 +17,9 @@ Dawn breaks over the rolling fields as you finish your morning chores.
 Your foster brother Kay calls from the stable. 
 "Arthur! Father wants you. Something about the tournament in London."
 
-+ "I hurry to Sir Ector." 
++ I hurry to Sir Ector. 
     -> meet_ector
-+ "Kay can wait. I finish my chores first." 
++ Kay can wait. I finish my chores first.
     ~ humility += 1
     -> finish_chores
 
@@ -88,7 +88,7 @@ As night falls, your campfire flickers. A hooded stranger approaches.
 + "Stay back. Who are you?" 
     ~ courage += 1
     -> meet_merlin
-+ "I ignore him and focus on the fire." -> ignore_merlin
++ I ignore him and focus on the fire. -> ignore_merlin
 
 === meet_merlin ===
 The stranger lowers his hood. It is an elderly man with sharp, knowing eyes.
@@ -134,7 +134,7 @@ Sir Ector frowns. "Arthur, fetch it at once!"
 + "I'll go get it!" 
     ~ courage += 1
     -> find_sword
-+ "I try to calm Kay first." 
++ I try to calm Kay first. 
     ~ humility += 1
     -> calm_kay
 
@@ -162,9 +162,9 @@ A sword stands embedded in a stone, sunlight shimmering on its hilt.
 
 A plaque reads: "Whosoever pulleth this sword from this stone is the rightful king of Briton."
 
-+ "I should look closer." 
++ I should look closer.
     -> examine_stone
-+ "Ignore it. Kay needs his sword." 
++ Ignore it. Kay needs his sword.
     -> ignore_stone
 
 === ignore_stone ===
@@ -185,10 +185,10 @@ You approach the sword. No guards. No crowd. The bustle of the tournament far aw
 
 Your hand trembles as you reach for the hilt.
 
-+ "I grip the sword firmly." 
++ I grip the sword firmly.
     ~ courage += 1
     -> pull_sword
-+ "I hesitate. Who am I to try this?" 
++ I hesitate. Who am I to try this? 
     ~ humility += 1
     -> hesitate_sword
 
@@ -211,10 +211,10 @@ The sword slides free as though it were placed there only moments before.
 
 You hold it in your hands.
 
-+ "Return to Kay posthaste."
++ Return to Kay posthaste.
     ~ humility += 1
     ->return_to_Kay
-+ "Tell Sir Ector about the sword."
++ Tell Sir Ector about the sword.
     ~ courage += 1
     ->tell_SirEctor
 
@@ -232,7 +232,7 @@ You dash up to your brother in his tent and look to hand him the sword.
 Sir Ector enters the tent in that moment and looks upon the sword, he gasps.
 "Arthur show me where you've retrieved this sword from this instant."
 
-+ "Take him to the stone"
++ Take him to the stone
     ->the_Stone
     
 === tell_SirEctor ===
